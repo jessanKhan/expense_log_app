@@ -19,10 +19,9 @@ import {
   Button,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import TotalExpenses from '../../components/totalExpense';
 import {increment, decrement} from '../../redux/home/homeAction';
 
-const Home = ({navigation}) => {
+const CustomModalSelector = () => {
   const [value, setValue] = useState();
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.Home.value);
@@ -35,18 +34,13 @@ const Home = ({navigation}) => {
   return (
     <>
       <View>
-
-      <View>
-         <TotalExpenses/>
-         <Text>{counter}</Text>
-      </View>
-        
-        <Button onPress={()=> navigation.navigate("AddExpense")} title="Add Expenses"/>
-        {/* <Button onPress={() => Increment()} title="Increment" />
-        <Button onPress={() => Decrement()} title="Decrement" /> */}
+        <Text>{counter}</Text>
+        <View></View>
+        <Button onPress={() => Increment()} title="Increment" />
+        <Button onPress={() => Decrement()} title="Decrement" />
       </View>
     </>
   );
 };
 
-export default Home;
+export default CustomModalSelector;
