@@ -1,7 +1,7 @@
 import React from "react"
 import { View } from "react-native"
 import { Button } from "react-native-elements"
-import TotalExpenses from "../../components/totalExpense"
+import TotalExpenses from "../../components/TotalExpense/totalExpense"
 
 const Home = ({ navigation }) => {
   return (

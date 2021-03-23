@@ -6,9 +6,7 @@
  * @flow strict-local
  */
 
-import React from "react"
-import { useEffect } from "react"
-import { useState, useCallback } from "react"
+import React, { useState } from "react"
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,12 +15,10 @@ import {
   Text,
   Image,
   StatusBar,
-  Button,
   Modal,
-  Pressable,
 } from "react-native"
-import { useDispatch, useSelector } from "react-redux"
-
+import { useSelector } from "react-redux"
+import { Button } from "react-native-elements"
 import { RadioButton } from "react-native-paper"
 import { Month, Category, Week } from "../../components/data/data"
 
@@ -39,19 +35,16 @@ const ExpenseLog = () => {
   const handlefirstSelection = (value) => {
     setModal2Visible(!modal2Visible)
     setModalVisible(!modalVisible)
-    console.log(filterCategory(value), value)
     setView_log(filterCategory(value))
   }
   const handleSecondSelection = (value) => {
     setModal2Visible(!modal2Visible)
     setModalVisible(!modalVisible)
-    console.log(filterMonth(value), value)
     setView_log(filterMonth(value))
   }
   const handleThirdSelection = (value) => {
     setModal2Visible(!modal2Visible)
     setModalVisible(!modalVisible)
-    console.log(filterWeek(value), value)
     setView_log(filterWeek(value))
   }
 
@@ -77,14 +70,21 @@ const ExpenseLog = () => {
 
     return result
   }
-  useEffect(() => {
-    console.log("value", expenseData, value)
-  }, [expenseData, valueR, value])
 
   return (
     <>
       <View>
-        <Button title="open" onPress={() => setModalVisible(!modalVisible)} />
+        <View style={{ alignItems: "center", margin: 5 }}>
+          <Button
+            style={{ alignSelf: "center" }}
+            title="Filter"
+            buttonStyle={{
+              width: 150,
+              borderRadius: 6,
+            }}
+            onPress={() => setModalVisible(!modalVisible)}
+          />
+        </View>
         <View style={styles.centeredView}>
           <Modal
             animationType="fade"
@@ -177,7 +177,6 @@ const ExpenseLog = () => {
           {view_Log.length > 0 &&
             view_Log.map((data) => (
               <View style={styles.card}>
-                {/* <Image style={styles.cardImage} source={{uri:item.image}}/> */}
                 <View style={styles.cardHeader}>
                   <View style={{ flex: 1 }}>
                     <View
@@ -225,7 +224,6 @@ const styles = StyleSheet.create({
   radioText: {
     textAlignVertical: "center",
   },
-  /******** card **************/
   card: {
     shadowColor: "#00000021",
     shadowOffset: {
@@ -245,7 +243,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  /******** card components **************/
   title: {
     fontSize: 18,
   },
