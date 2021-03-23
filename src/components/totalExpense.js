@@ -25,13 +25,23 @@ import { useDispatch, useSelector } from "react-redux"
 const TotalExpenses = () => {
   const [value, setValue] = useState()
   const dispatch = useDispatch()
-  const counter = useSelector((state) => state.Home.value)
+  const counter = useSelector((state) => state.AddExpense.expenseDB)
 
   const Increment = useCallback(() => dispatch(increment()))
   const Decrement = useCallback(() => dispatch(decrement()))
 
+  const sum = (key) => {
+    return this.reduce((a, b) => a + (b[key] || 0), 0)
+  }
   useEffect(() => {
-    console.log("value", counter)
+    class TravellerCollection extends Array {
+      sum(key) {
+        console.log(key, "Key")
+        return this.reduce((a, b) => a + (parseFloat(b[key]) || 0), 0)
+      }
+    }
+    const traveler = new TravellerCollection(...counter)
+    setValue(traveler.sum("amount"))
   }, [counter])
   return (
     <View>
@@ -45,7 +55,7 @@ const TotalExpenses = () => {
               }}
             >
               <Text style={styles.title}>Total Expenses</Text>
-              <Text style={styles.title2}>$90000</Text>
+              <Text style={styles.title2}>${value}</Text>
             </View>
 
             <View style={styles.timeContainer}>

@@ -6,9 +6,9 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {useEffect} from 'react';
-import {useState, useCallback} from 'react';
+import React from "react"
+import { useEffect } from "react"
+import { useState, useCallback } from "react"
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,37 +16,33 @@ import {
   View,
   Text,
   StatusBar,
-  Button,
-} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import TotalExpenses from '../../components/totalExpense';
-import {increment, decrement} from '../../redux/home/homeAction';
+} from "react-native"
+import { Button } from "react-native-elements"
+import { useDispatch, useSelector } from "react-redux"
+import TotalExpenses from "../../components/totalExpense"
+import { increment, decrement } from "../../redux/home/homeAction"
 
-const Home = ({navigation}) => {
-  const [value, setValue] = useState();
-  const dispatch = useDispatch();
-  const counter = useSelector((state) => state.Home.value);
-
-  const Increment = useCallback(() => dispatch(increment()));
-  const Decrement = useCallback(() => dispatch(decrement()));
-  useEffect(() => {
-    console.log('value', counter);
-  }, [counter]);
+const Home = ({ navigation }) => {
   return (
     <>
-      <View>
-
-      <View>
-         <TotalExpenses/>
-         <Text>{counter}</Text>
-      </View>
-        
-        <Button onPress={()=> navigation.navigate("AddExpense")} title="Add Expenses"/>
-        {/* <Button onPress={() => Increment()} title="Increment" />
-        <Button onPress={() => Decrement()} title="Decrement" /> */}
+      <View style={{ flex: 1 }}>
+        <View>
+          <TotalExpenses />
+        </View>
+        <View style={{ flexDirection: "column", alignItems: "center" }}>
+          <Button
+            style={{ alignSelf: "center" }}
+            onPress={() => navigation.navigate("AddExpense")}
+            title="Add Expenses"
+            buttonStyle={{
+              width: 150,
+              borderRadius: 6,
+            }}
+          />
+        </View>
       </View>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
