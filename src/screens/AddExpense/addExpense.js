@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from "react"
 import { useEffect } from "react"
 import { useState, useCallback } from "react"
@@ -15,11 +7,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { increment } from "../../redux/addExpense/addExpenseAction"
 import { Formik } from "formik"
 import DropDownPicker from "react-native-dropdown-picker"
-import Icon from "react-native-vector-icons/Feather"
+
 import DateTimePickerModal from "react-native-modal-datetime-picker"
 
-import { categoryValues, paymentModes } from "../../components/data/data"
+import { paymentModes } from "../../components/data/data"
 
+const Category = [
+  { label: "Food", value: "Food" },
+  { label: "Transport", value: "Transport" },
+  { label: "Hospital", value: "Hospital" },
+  { label: "Education", value: "Education" },
+  { label: "Home", value: "Home" },
+]
 const AddExpenses = ({ navigation }) => {
   const [value, setValue] = useState()
   const [category, setCategory] = useState("")
@@ -63,6 +62,7 @@ const AddExpenses = ({ navigation }) => {
         category: category,
         payment_mode: paymentMode,
         date: date.toString().substring(0, 15),
+        month: date.toString().substring(4, 7),
       })
       ToastAndroid.showWithGravity(
         "Expense added to the account",
@@ -104,7 +104,7 @@ const AddExpenses = ({ navigation }) => {
 
             <View>
               <DropDownPicker
-                items={categoryValues}
+                items={Category}
                 placeholder="Select Category"
                 defaultValue={category}
                 containerStyle={{ height: 50 }}

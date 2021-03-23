@@ -1,46 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from "react"
 import { useEffect } from "react"
-import { useState, useCallback } from "react"
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  StatusBar,
-  Button,
-} from "react-native"
-import { useDispatch, useSelector } from "react-redux"
-// import {increment, decrement} from '../../redux/home/homeAction';
+import { useState } from "react"
+import { StyleSheet, View, Text, Image } from "react-native"
+import { useSelector } from "react-redux"
 
 const TotalExpenses = () => {
   const [value, setValue] = useState()
-  const dispatch = useDispatch()
   const counter = useSelector((state) => state.AddExpense.expenseDB)
 
-  const Increment = useCallback(() => dispatch(increment()))
-  const Decrement = useCallback(() => dispatch(decrement()))
-
-  const sum = (key) => {
-    return this.reduce((a, b) => a + (b[key] || 0), 0)
-  }
   useEffect(() => {
-    class TravellerCollection extends Array {
+    class ExpenseAllData extends Array {
       sum(key) {
         console.log(key, "Key")
         return this.reduce((a, b) => a + (parseFloat(b[key]) || 0), 0)
       }
     }
-    const traveler = new TravellerCollection(...counter)
+    const traveler = new ExpenseAllData(...counter)
     setValue(traveler.sum("amount"))
   }, [counter])
   return (
